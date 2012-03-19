@@ -1,88 +1,50 @@
-<!DOCTYPE html>
 <html>
 <head>
-  <meta charset='utf-8'>
+    <style>
+        html {
+            background-image: url(nosignal.gif);
+            background-size: 100% 100%;
+        }
 
-  <title>richardanaya/BlackTriangle @ GitHub</title>
+        @-webkit-keyframes infinite-spinning {
+          from {
+            -webkit-transform: rotate(0deg);
+          }
+          to {
+            -webkit-transform: rotate(360deg);
+          }
+        }
 
-  <style type="text/css">
-    body {
-      margin-top: 1.0em;
-      background-color: #ab1274;
-      font-family: Helvetica, Arial, FreeSans, san-serif;
-      color: #ffffff;
-    }
-    #container {
-      margin: 0 auto;
-      width: 700px;
-    }
-    h1 { font-size: 3.8em; color: #54ed8b; margin-bottom: 3px; }
-    h1 .small { font-size: 0.4em; }
-    h1 a { text-decoration: none }
-    h2 { font-size: 1.5em; color: #54ed8b; }
-    h3 { text-align: center; color: #54ed8b; }
-    a { color: #54ed8b; }
-    .description { font-size: 1.2em; margin-bottom: 30px; margin-top: 30px; font-style: italic;}
-    .download { float: right; }
-    pre { background: #000; color: #fff; padding: 15px;}
-    hr { border: 0; width: 80%; border-bottom: 1px solid #aaa}
-    .footer { text-align:center; padding-top:30px; font-style: italic; }
-  </style>
+        #thing {
+            width: 300px;
+            height: 300px;
+            background-image: url(blacktriangle.png);
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin-left: -150px;
+            margin-top: -150px;
+            background-size: 100% 100%;
+        }
+    </style>
+    <script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
 </head>
-
 <body>
-  <a href="https://github.com/richardanaya/BlackTriangle"><img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub" /></a>
-
-  <div id="container">
-
-    <div class="download">
-      <a href="https://github.com/richardanaya/BlackTriangle/zipball/master">
-        <img border="0" width="90" src="https://github.com/images/modules/download/zip.png"></a>
-      <a href="https://github.com/richardanaya/BlackTriangle/tarball/master">
-        <img border="0" width="90" src="https://github.com/images/modules/download/tar.png"></a>
-    </div>
-
-    <h1><a href="https://github.com/richardanaya/BlackTriangle">BlackTriangle</a>
-      <span class="small">by <a href="https://github.com/richardanaya">richardanaya</a></span></h1>
-
-    <div class="description">
-      
-    </div>
-
-    
-
-    
-
-    
-
-    
-
-    
-      <h2>Authors</h2>
-      <p>Richard Anaya (richard.anaya@gmail.com)<br/>      </p>
-    
-
-    
-      <h2>Contact</h2>
-      <p>Richard Anaya (richard.anaya@gmail.com)<br/>      </p>
-    
-
-    <h2>Download</h2>
-    <p>
-      You can download this project in either
-      <a href="https://github.com/richardanaya/BlackTriangle/zipball/master">zip</a> or
-      <a href="https://github.com/richardanaya/BlackTriangle/tarball/master">tar formats.
-    </p>
-    <p>You can also clone the project with <a href="http://git-scm.com">Git</a>
-      by running:
-      <pre>$ git clone git://github.com/richardanaya/BlackTriangle</pre>
-    </p>
-
-    <div class="footer">
-      get the source code on GitHub : <a href="https://github.com/richardanaya/BlackTriangle">richardanaya/BlackTriangle</a>
-    </div>
-
-  </div>
-
+<div id="thing"></div>
 </body>
+<script>
+    $(document).mousemove(function(e){
+        var width = $(document).width();
+        var height = $(document).height();
+        var x = e.clientX;
+        var y = e.clientY;
+        var dist = Math.sqrt((x-width/2)*(x-width/2)+(y-height/2)*(y-height/2));
+        var blur = Math.floor(50-50*(dist/500));
+        var maxblur = 100;
+        var minblur = 3;
+        blur = blur>maxblur?maxblur:blur;
+        blur = blur<minblur?minblur:blur;
+        $('#thing').css('-webkit-filter','blur('+blur+'px)')
+    })
+</script>
 </html>
