@@ -1,0 +1,50 @@
+<html>
+<head>
+    <style>
+        html {
+            background-image: url(nosignal.gif);
+            background-size: 100% 100%;
+        }
+
+        @-webkit-keyframes infinite-spinning {
+          from {
+            -webkit-transform: rotate(0deg);
+          }
+          to {
+            -webkit-transform: rotate(360deg);
+          }
+        }
+
+        #thing {
+            width: 300px;
+            height: 300px;
+            background-image: url(blacktriangle.png);
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin-left: -150px;
+            margin-top: -150px;
+            background-size: 100% 100%;
+        }
+    </style>
+    <script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+</head>
+<body>
+<div id="thing"></div>
+</body>
+<script>
+    $(document).mousemove(function(e){
+        var width = $(document).width();
+        var height = $(document).height();
+        var x = e.clientX;
+        var y = e.clientY;
+        var dist = Math.sqrt((x-width/2)*(x-width/2)+(y-height/2)*(y-height/2));
+        var blur = Math.floor(50-50*(dist/500));
+        var maxblur = 100;
+        var minblur = 3;
+        blur = blur>maxblur?maxblur:blur;
+        blur = blur<minblur?minblur:blur;
+        $('#thing').css('-webkit-filter','blur('+blur+'px)')
+    })
+</script>
+</html>
